@@ -11,7 +11,14 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 // TODO: make an option for the hotkey to end capture
+// TODO: so, no log? *curbstomps keyboard*
 
+/**
+ * This class triggers the InputCapture class to begin capturing user input. InputCapture then utilizes the JNativeHook library to capture the input.
+ * The output is stored in a text file until the user decides to reproduce it with the Generator half of this project.
+ * PARAMS:
+ *     output_file - The file to store the program output in. If it already exists the program will ask if it's ok to overwrite it.
+ */
 @Command(name = "input-capture", mixinStandardHelpOptions = true, version = "input-capture v0.0.1", description = 
         "Captures user input from keyboard and mouse and writes them to a file to be later repreduced by input-generator.")
 public class InputCaptureLauncher implements Callable<Integer> {
@@ -23,12 +30,7 @@ public class InputCaptureLauncher implements Callable<Integer> {
     public Integer call() throws Exception {
         // create the InputCapture object
         InputCapture inputCapture = new InputCapture(output_file);
-        // TODO: maybe write/print in the listener?
-        LinkedHashMap<Long, String> actions = inputCapture.run();
-        // Set<Long> keys = actions.keySet();
-        // for (Long key : keys) {
-        //     System.out.println(key + ", " + actions.get(key));
-        // }
+        inputCapture.run();
         return 0;
     }
     

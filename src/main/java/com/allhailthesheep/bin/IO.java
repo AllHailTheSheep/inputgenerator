@@ -30,6 +30,7 @@ public class IO {
                 try {
                     file.createNewFile();
                     LOG.info("File " + file.getAbsolutePath() + " created.");
+                    return;
                 } catch (IOException e) {
                     // this should never happen but it is harmless to include
                     LOG.fatal("Unable to create file " + file.getAbsolutePath());

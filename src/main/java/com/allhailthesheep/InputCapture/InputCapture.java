@@ -16,8 +16,11 @@ import com.github.kwhat.jnativehook.NativeHookException;
 // local imports
 import com.allhailthesheep.bin.IO;
 
+
+/**
+ * This class controls the Listener interface made with JNativeHook.
+ */
 public class InputCapture {
-    // TODO: add some fucking documentation
     private static final Logger LOG = LogManager.getLogger(InputCapture.class);
 
     private static final Scanner consoleIn = new Scanner(System.in);
@@ -30,7 +33,8 @@ public class InputCapture {
         LOG.info("File checks completed successfully.");
     }
 
-    public LinkedHashMap<Long, String> run() {
+    public void run() {
+        System.out.println("Registering native hook...");
         try {
             GlobalScreen.registerNativeHook();
         }
@@ -44,6 +48,6 @@ public class InputCapture {
         GlobalScreen.addNativeMouseMotionListener(l);
         GlobalScreen.addNativeMouseWheelListener(l);
         GlobalScreen.addNativeKeyListener(l);
-        return l.getActions();
+        return;
     }
 }

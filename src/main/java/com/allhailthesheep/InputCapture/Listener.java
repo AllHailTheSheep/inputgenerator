@@ -38,23 +38,29 @@ public class Listener implements NativeKeyListener, NativeMouseInputListener, Na
 		actions.put(System.currentTimeMillis() - start, "keyboard." + NativeKeyEvent.getKeyText(e.getKeyCode()) + ".press");
 
 		if (e.getKeyCode() == NativeKeyEvent.VC_ESCAPE) {
+			// TODO: make first on release and second on press (possible other config option?)
 			if (esc == 0) {
-				LOG.info("First esc pressed.");
+				LOG.info("ESC pressed. Starting recording...");
+				System.out.println("ESC pressed. Starting recording...");
 				esc++;
-				// TODO: find out why this isnt working
 				setStart();
 			} else if (esc == 1) {
-				LOG.info("First esc pressed.");
+				LOG.info("ESC pressed. Finishing up...");
+				System.out.println("ESC pressed. Finishing up...");
 				try {
             		GlobalScreen.unregisterNativeHook();
             	} catch (NativeHookException nativeHookException) {
         			nativeHookException.printStackTrace();
         		}
+				// TODO: add cleaning of negative times from map
+				// TODO: write to file here!
 				Set<Long> keys = actions.keySet();
         		for (Long key : keys) {
             		System.out.println(key + ", " + actions.get(key));
         		}
-				}
+				System.out.println("Finished listener.");
+				LOG.debug("Finished listener.");
+			}
         }
 	}
 
@@ -76,10 +82,6 @@ public class Listener implements NativeKeyListener, NativeMouseInputListener, Na
 
 	public void nativeMouseWheelMoved(NativeMouseWheelEvent e) {
 		actions.put(System.currentTimeMillis() - start, "mouseWheel." + e.getWheelRotation());
-	}
-
-	public LinkedHashMap<Long, String> getActions() {
-		return actions;
 	}
 
 	public void setStart() {
