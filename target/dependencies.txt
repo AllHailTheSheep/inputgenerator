@@ -1,0 +1,12 @@
+digraph "com.allhailthesheep:inputgenerator:jar:1.0-SNAPSHOT" { 
+	"com.allhailthesheep:inputgenerator:jar:1.0-SNAPSHOT" -> "org.apache.logging.log4j:log4j-core:jar:2.19.0:compile" ; 
+	"com.allhailthesheep:inputgenerator:jar:1.0-SNAPSHOT" -> "info.picocli:picocli:jar:4.7.0:compile" ; 
+	"com.allhailthesheep:inputgenerator:jar:1.0-SNAPSHOT" -> "org.apache.logging.log4j:log4j-api:jar:2.19.0:compile" ; 
+	"com.allhailthesheep:inputgenerator:jar:1.0-SNAPSHOT" -> "com.github.kwhat:jnativehook:jar:2.2.1:compile" ; 
+	"com.allhailthesheep:inputgenerator:jar:1.0-SNAPSHOT" -> "org.junit.jupiter:junit-jupiter-api:jar:5.6.0:test" ; 
+	"com.allhailthesheep:inputgenerator:jar:1.0-SNAPSHOT" -> "org.junit.jupiter:junit-jupiter-engine:jar:5.6.0:test" ; 
+	"org.junit.jupiter:junit-jupiter-api:jar:5.6.0:test" -> "org.apiguardian:apiguardian-api:jar:1.1.0:test" ; 
+	"org.junit.jupiter:junit-jupiter-api:jar:5.6.0:test" -> "org.opentest4j:opentest4j:jar:1.2.0:test" ; 
+	"org.junit.jupiter:junit-jupiter-api:jar:5.6.0:test" -> "org.junit.platform:junit-platform-commons:jar:1.6.0:test" ; 
+	"org.junit.jupiter:junit-jupiter-engine:jar:5.6.0:test" -> "org.junit.platform:junit-platform-engine:jar:1.6.0:test" ; 
+ } 
