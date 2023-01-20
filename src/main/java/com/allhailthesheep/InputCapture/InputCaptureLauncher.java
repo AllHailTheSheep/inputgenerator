@@ -11,6 +11,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 // TODO: make an option for the hotkey to end capture
+// TODO: add touch support?
 // TODO: so, no log? *curbstomps keyboard*
 
 /**

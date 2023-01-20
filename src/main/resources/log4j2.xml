@@ -5,7 +5,10 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
         </Console>
-        <File name="FILE" fileName="/home/julia/Documents/inputgenerator/log.log" append="true">
+        <!-- TODO: for some reason this NEEDS the full path on ubuntu. find out why -->
+        <!-- ubuntu path: /home/julia/Documents/inputgenerator/log.log -->
+        <!-- windows path: ./log.log -->
+        <File name="FILE" fileName="./log.log" append="false">
             <PatternLayout
                 pattern="[%-5p][%d{dd-MMM-yyyy HH:mm:ss a}] %C{0}.%M:(%L) - %m%n" />
         </File>
