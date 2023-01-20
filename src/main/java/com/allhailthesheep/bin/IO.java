@@ -13,8 +13,6 @@ public class IO {
     private HashMap<String, String> keyboard = new HashMap<String, String>();
     
     public static void fileChecks(File file, Scanner consoleIn, Logger LOG) {
-        File logFile = new File("./log.log");
-        logFile.delete();
         // if the file exists, we need to overwrite it with the users permission
         if (file.exists()) {
             LOG.warn("File already exists: " + file.getAbsolutePath()+ "!. Asking for permission to overwrite...");
