@@ -49,6 +49,7 @@ public class InputCapture {
         GlobalScreen.addNativeMouseMotionListener(l);
         GlobalScreen.addNativeMouseWheelListener(l);
         GlobalScreen.addNativeKeyListener(l);
+        System.out.println("Waiting for first esc press...");
         return;
     }
 }

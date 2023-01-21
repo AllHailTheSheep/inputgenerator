@@ -2,6 +2,7 @@ package com.allhailthesheep.InputCapture;
 
 // java system imports
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -36,36 +37,34 @@ public class Listener implements NativeKeyListener, NativeMouseInputListener, Na
 
     public void nativeKeyPressed(NativeKeyEvent e) {
 		actions.put(System.currentTimeMillis() - start, "keyboard." + NativeKeyEvent.getKeyText(e.getKeyCode()) + ".press");
-
-		if (e.getKeyCode() == NativeKeyEvent.VC_ESCAPE) {
-			// TODO: make first on release and second on press (possible other config option?)
-			if (esc == 0) {
-				LOG.info("ESC pressed. Starting recording...");
-				System.out.println("ESC pressed. Starting recording...");
-				esc++;
-				setStart();
-			} else if (esc == 1) {
-				LOG.info("ESC pressed. Finishing up...");
-				System.out.println("ESC pressed. Finishing up...");
-				try {
-            		GlobalScreen.unregisterNativeHook();
-            	} catch (NativeHookException nativeHookException) {
-        			nativeHookException.printStackTrace();
-        		}
-				// TODO: add cleaning of negative times from map
-				// TODO: write to file here!
-				Set<Long> keys = actions.keySet();
-        		for (Long key : keys) {
-            		System.out.println(key + ", " + actions.get(key));
-        		}
-				System.out.println("Finished listener.");
-				LOG.debug("Finished listener.");
-			}
+ 
+		if (e.getKeyCode() == NativeKeyEvent.VC_ESCAPE && esc == 1) {
+			LOG.info("ESC pressed. Finishing up...");
+			System.out.println("ESC pressed. Finishing up...");
+			try {
+            	GlobalScreen.unregisterNativeHook();
+            } catch (NativeHookException nativeHookException) {
+        		nativeHookException.printStackTrace();
+        	}
+			clean();
+			// TODO: write to file here!
+			Set<Long> keys = actions.keySet();
+        	for (Long key : keys) {
+           		System.out.println(key + ", " + actions.get(key));
+        	}
+			System.out.println("Finished listener.");
+			LOG.debug("Finished listener.");
         }
 	}
 
 	public void nativeKeyReleased(NativeKeyEvent e) {
 		actions.put(System.currentTimeMillis() - start, "keyboard." + NativeKeyEvent.getKeyText(e.getKeyCode()) + ".release");
+		if (e.getKeyCode() == NativeKeyEvent.VC_ESCAPE && esc == 0) {
+			LOG.info("First ESC released. Starting recording...");
+			System.out.println("First ESC released. Starting recording...");
+			esc++;
+			setStart();
+		}
 	}
 
 	public void nativeMousePressed(NativeMouseEvent e) {
@@ -86,5 +85,18 @@ public class Listener implements NativeKeyListener, NativeMouseInputListener, Na
 
 	public void setStart() {
 		start = System.currentTimeMillis();
+	}
+
+	private void clean() {
+		LinkedList<Long> toRemove = new LinkedList<Long>();
+		LinkedList<Long> every = new LinkedList<Long>();
+		for (Long key : actions.keySet()) {
+            if (key < 0) {
+                toRemove.add(key);
+            }
+			every.add(key);
+        }
+		toRemove.forEach((i) -> actions.remove(i));
+		actions.remove(every.getLast());
 	}
 }
