@@ -22,6 +22,10 @@ public class InputCapture {
     private static final Logger LOG = LogManager.getLogger(InputCapture.class);
     private static final Scanner consoleIn = new Scanner(System.in);
 
+    /**
+     * The initialization function runs the file checks on the argument.
+     * @param fn the filename to store the results of the program in.
+     */
     public InputCapture(String fn) {
         // upon creation we need to run our file checks on the filename provided
         LOG.info("Starting file checks...");
@@ -30,6 +34,9 @@ public class InputCapture {
         LOG.info("File checks completed successfully.");
     }
 
+    /**
+     * The run method executes the Listener class.
+     */
     public void run() {
         // when we get the run signal we need to register the native hook and add the listeners.
         // TODO: run listener in other thread?
