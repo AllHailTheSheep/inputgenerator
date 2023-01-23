@@ -1,7 +1,6 @@
 package com.allhailthesheep.InputCapture;
 
-import java.util.LinkedHashMap;
-import java.util.Set;
+
 // java system imports
 import java.util.concurrent.Callable;
 
@@ -12,7 +11,6 @@ import picocli.CommandLine.Parameters;
 
 // TODO: make an option for the hotkey to end capture
 // TODO: add touch support?
-// TODO: so, no log? *curbstomps keyboard*
 
 /**
  * This class triggers the InputCapture class to begin capturing user input. InputCapture then utilizes the JNativeHook library to capture the input.

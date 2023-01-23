@@ -20,15 +20,13 @@ import com.allhailthesheep.bin.IO;
  */
 public class InputCapture {
     private static final Logger LOG = LogManager.getLogger(InputCapture.class);
-
     private static final Scanner consoleIn = new Scanner(System.in);
-    private File file;
 
     public InputCapture(String fn) {
         // upon creation we need to run our file checks on the filename provided
-        this.file = new File(fn);
         LOG.info("Starting file checks...");
-        IO.fileChecks(file, consoleIn, LOG);
+        IO.fileChecks(fn, consoleIn, LOG);
+        consoleIn.close();
         LOG.info("File checks completed successfully.");
     }
 
@@ -36,6 +34,7 @@ public class InputCapture {
         // when we get the run signal we need to register the native hook and add the listeners.
         // TODO: run listener in other thread?
         System.out.println("Registering native hook...");
+        LOG.info("Registering native hook...");
         try {
             GlobalScreen.registerNativeHook();
         }
