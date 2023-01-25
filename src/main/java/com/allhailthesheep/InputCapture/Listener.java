@@ -33,6 +33,7 @@ public class Listener implements NativeKeyListener, NativeMouseInputListener, Na
 	public int esc = 0;
 
 	// TODO: use bufferedfilewriter and dont keep track of actions in a map, just write them directly to file
+	// TODO: only write if the esc > 0 to save memory
 
     public void nativeKeyPressed(NativeKeyEvent e) {
 		actions.put(System.currentTimeMillis() - start, "keyboard." + NativeKeyEvent.getKeyText(e.getKeyCode()) + ".press");
@@ -90,6 +91,9 @@ public class Listener implements NativeKeyListener, NativeMouseInputListener, Na
 		start = System.currentTimeMillis();
 	}
 
+	/**
+	 * Removes events that happened before the start time.
+	 */
 	private void clean() {
 		LinkedList<Long> toRemove = new LinkedList<Long>();
 		LinkedList<Long> every = new LinkedList<Long>();
