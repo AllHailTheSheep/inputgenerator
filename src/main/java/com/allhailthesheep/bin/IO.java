@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.Set;
@@ -13,13 +12,14 @@ import java.util.Set;
 import org.apache.logging.log4j.Logger;
 
 public class IO {
-    private HashMap<String, String> mouse = new HashMap<String, String>();
-    private HashMap<String, String> mouse_wheel = new HashMap<String, String>();
-    private HashMap<String, String> keyboard = new HashMap<String, String>();
-
     private static String outputDest = null;
-    
 
+    /**
+     * This function writes the output of the program to a file.
+     * @param actions the actions collected in form LinkedHashMap<Long, String>
+     * @throws IOException if writer is unable to write to file, which shouldn't happen
+     * since we ran fileChecks() at the beginning of the program.
+     */
     public static void writeOutput(LinkedHashMap<Long, String> actions) throws IOException {
         PrintWriter w = new PrintWriter(new BufferedWriter(new FileWriter(outputDest)));
         Set<Long> keys = actions.keySet();

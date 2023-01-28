@@ -9,7 +9,7 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-// TODO: make an option for the hotkey to end capture
+// TODO: make an option for the hotkey to end capture. perhaps accomplish this by running a thread executing this program wth a custom function in inutcapture.java that saves the first key to a file then read it here. will needto add underlying support for that mode in Listener.java
 // TODO: add touch support?
 
 /**

@@ -1,9 +1,15 @@
 package com.allhailthesheep.bin;
 
+import java.util.HashMap;
 import java.util.Scanner;
+
 
 public class utils {
     static final boolean DEBUG = true;
+
+    private HashMap<String, String> mouse = new HashMap<String, String>();
+    private HashMap<String, String> mouse_wheel = new HashMap<String, String>();
+    private HashMap<String, String> keyboard = new HashMap<String, String>();
 
     /**
     * This function returns a string after prompting the user

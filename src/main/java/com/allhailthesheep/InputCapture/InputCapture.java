@@ -1,7 +1,6 @@
 package com.allhailthesheep.InputCapture;
 
 // java system imports
-import java.io.File;
 import java.util.Scanner;
 
 // log4j2 imports 
